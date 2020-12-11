@@ -1,0 +1,41 @@
+= Quickstart Template for  VueJS + SpringBoot with Authentication
+
+===Quickstart confiuration for VueJS and SpringBoot Project
+
+This is a basic template allowing fullstack application development for SpringBoot and VueJS with authentication.
+Login, Register, and management of different Roles and authorithies are found there.
+Everything to start quickly and well.
+
+=== INSTALLATION
+
+To install and run this project follow these steps:
+
+. Clone this repository
+
+. Install Gradle Dependency
+
+. Go to (src/main/frontend) and  run "npm run build" command to compile the frontend
+
+. Create a Sql database with the configurations found in application-dev.properties (src/main/resources/application.properties)
+
+=== RUN THE PROJECT
+
+. Go to (src/main/frontend) and  run "npm run serve". The app will start on port 8081
+
+. Go to (src/main/java/com/auth/template/demo/) und start the Spring Boot Rest Api with "DemoApplication.java" as main class (The api will
+start on port 8080)
+
+=== Default Users for Login
+image:/users.png?raw=true[Default users]
+
+. You can find the default users in the TestUser.java class (src/main/java/com/auth/template/demo/scopes/user/entities/TestUser.java)
+
+. You can also register and navigate on the App
+
+
+=== Example
+
+image:/screen1.png?raw=true[screen1]
+
+
+image:/screen2.png?raw=true[screen1]

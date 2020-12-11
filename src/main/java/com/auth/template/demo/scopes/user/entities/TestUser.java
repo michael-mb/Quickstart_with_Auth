@@ -6,12 +6,12 @@ import java.util.Set;
 
 public enum TestUser {
 
-    USER_ONE("Michael" , "Mboni" , "admin@admin.com" ,
-            "Mike237" , "admin0","dresden",
+    USER_ONE("john" , "Doe" , "admin@admin.com" ,
+            "johnny" , "admin0","dresden",
             new HashSet<UserRole>(Arrays.asList(UserRole.USER , UserRole.ADMIN , UserRole.MODERATOR))),
 
-    USER_TWO("Mich" , "Tsayem" , "mod@mod.com" ,
-            "Mich237" , "moderator0","berlin",
+    USER_TWO("Michael" , "Jackson" , "mod@mod.com" ,
+            "Mike237" , "moderator0","berlin",
             new HashSet<UserRole>(Arrays.asList(UserRole.USER , UserRole.MODERATOR)));
 
 
