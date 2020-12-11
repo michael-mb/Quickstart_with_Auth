@@ -90,7 +90,6 @@ public class AuthController {
 
     @GetMapping("/logout")
     public boolean handleLogout(Authentication authentication) {
-        System.err.println("Hey");
         if (authentication != null && authentication.isAuthenticated()) {
             try {
                 StaticUtils.logoutAndInvalidateSession();

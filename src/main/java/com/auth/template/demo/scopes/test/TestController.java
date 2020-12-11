@@ -1,9 +1,6 @@
 package com.auth.template.demo.scopes.test;
 
-import com.auth.template.demo.scopes.user.entities.User;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +22,6 @@ public class TestController {
     @PreAuthorize("hasAuthority ('USER') or hasAuthority ('MODERATOR') or hasAuthority ('ADMIN')")
     public String userAccess() {
         System.err.println(SecurityContextHolder.getContext().getAuthentication().getPrincipal());
-
         return "User Content.";
     }
 
@@ -38,8 +34,6 @@ public class TestController {
     @GetMapping("/admin")
     @PreAuthorize("hasAuthority('ADMIN')")
     public String adminAccess( HttpServletRequest request) {
-
-        System.err.println(request.getUserPrincipal().getName());
         return "Admin Board.";
     }
 }
