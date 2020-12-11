@@ -1,6 +1,6 @@
 = Quickstart Template for  VueJS + SpringBoot with Authentication
 
-===Quickstart confiuration for VueJS and SpringBoot Project
+=== Quickstart confiuration for VueJS and SpringBoot Project
 
 This is a basic template allowing fullstack application development for SpringBoot and VueJS with authentication.
 Login, Register, and management of different Roles and authorithies are found there.
