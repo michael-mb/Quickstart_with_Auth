@@ -157,14 +157,9 @@ export default {
       this.message = '';
       this.submitted = true;
 
-      var form = this.form;
-
       this.$validator.validate().then(isValid => {
         if (isValid) {
-
-          console.log(form);
-
-          this.$store.dispatch('auth/register', form).then(
+          this.$store.dispatch('auth/register', this.form).then(
             data => {
               this.message = data.message;
               this.successful = true;
