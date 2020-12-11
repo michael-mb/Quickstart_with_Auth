@@ -38,25 +38,14 @@ public class AuthController {
     @Autowired
     public UserService userService;
 
-    @Autowired
-    private LanguageService languageService;
 
     @Autowired
     JwtUtils jwtUtils;
 
 
-    @GetMapping("/is_user_logged_in")
-    public boolean handleIsUserLoggedIn( Authentication authentication){
-        if(authentication != null){
-            System.err.println("logged in");
-            return true;
-        }
-        System.err.println("not logged in");
-        return false;
-    }
 
     @PostMapping("/signin")
-    public ResponseEntity<?> handleLoginPost(@RequestBody @Valid final LoginDto loginDto){
+    public ResponseEntity<?> authenticateUser(@RequestBody @Valid final LoginDto loginDto){
 
         Authentication authentication = authenticationProvider.authenticate(
                 new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword()));
@@ -65,9 +54,12 @@ public class AuthController {
         String jwt = jwtUtils.generateJwtToken(authentication);
 
         User user = (User) authentication.getPrincipal();
+
         List<String> roles = user.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
+
+        System.err.println(authentication.getPrincipal());
 
         return ResponseEntity.ok(new JwtResponse(jwt,
                 user.getId(),
@@ -78,8 +70,6 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser( @RequestBody SignUpDto signUpDto) {
-
-        System.err.println(signUpDto);
 
         if (userService.doesEmailAlreadyExists(signUpDto.getEmail()) ||
         userService.doesPseudolAlreadyExists(signUpDto.pseudo)) {
@@ -100,6 +90,7 @@ public class AuthController {
 
     @GetMapping("/logout")
     public boolean handleLogout(Authentication authentication) {
+        System.err.println("Hey");
         if (authentication != null && authentication.isAuthenticated()) {
             try {
                 StaticUtils.logoutAndInvalidateSession();

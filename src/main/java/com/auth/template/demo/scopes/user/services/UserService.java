@@ -29,8 +29,6 @@ public class UserService {
     public  PasswordEncoder passwordEncoder;
 
 
-
-
     public void saveUser(final User user){
         if(user == null) throw new NullPointerException("User must not be null");
         userRepository.save(user);
