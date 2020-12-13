@@ -20,7 +20,7 @@ To install and run this project follow these steps:
 
 === RUN THE PROJECT
 
-. Go to (src/main/frontend) and  run "npm run serve". The app will start on port 8081
+. Go to (src/main/frontend) and  run "npm run serve". The app will start on port 8090
 
 . Go to (src/main/java/com/auth/template/demo/) und start the Spring Boot Rest Api with "DemoApplication.java" as main class (The api will
 start on port 8080)
