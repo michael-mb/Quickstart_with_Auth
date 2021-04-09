@@ -1,6 +1,7 @@
 package com.auth.template.demo.scopes.security.jwt;
 
 
+import com.auth.template.demo.scopes.token.TokenServiceImpl;
 import com.auth.template.demo.scopes.user.entities.User;
 import com.auth.template.demo.scopes.user.services.UserService;
 import org.slf4j.Logger;
@@ -22,7 +23,7 @@ import java.util.Optional;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
 	@Autowired
-	private JwtUtils jwtUtils;
+	private TokenServiceImpl tokenService;
 
 	@Autowired
 	private UserService userService;
@@ -34,8 +35,8 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		try {
 			String jwt = parseJwt(request);
-			if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
-				String username = jwtUtils.getUserNameFromJwtToken(jwt);
+			if (jwt != null && tokenService.isTokenValid(jwt)) {
+				String username = tokenService.getUserNameFromToken(jwt);
 
 				Optional<User> user = userService.findUserByEmail(username);
 				UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user.get(), user.get().getHashedPassword(),

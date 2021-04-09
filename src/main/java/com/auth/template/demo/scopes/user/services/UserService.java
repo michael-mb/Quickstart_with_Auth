@@ -36,7 +36,7 @@ public class UserService {
 
     public void generateAndSaveNewValidationTokenForUser(final User user) {
         if (user == null) throw new NullPointerException("User must not be null.");
-        String token = tokenService.createToken(user.getEmail());
+        String token = tokenService.createToken(user);
         user.setValidationToken(token);
         saveUser(user);
     }

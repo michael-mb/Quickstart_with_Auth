@@ -3,12 +3,11 @@ package com.auth.template.demo.scopes.auth.controller;
 
 import com.auth.template.demo.scopes.auth.forms.SignUpDto;
 import com.auth.template.demo.scopes.auth.payload.response.MessageResponse;
-import com.auth.template.demo.scopes.general.LanguageService;
 import com.auth.template.demo.scopes.auth.forms.LoginDto;
 import com.auth.template.demo.scopes.auth.payload.response.JwtResponse;
 import com.auth.template.demo.scopes.security.CustomAuthenticationProvider;
 import com.auth.template.demo.scopes.security.StaticUtils;
-import com.auth.template.demo.scopes.security.jwt.JwtUtils;
+import com.auth.template.demo.scopes.token.TokenServiceImpl;
 import com.auth.template.demo.scopes.user.entities.User;
 import com.auth.template.demo.scopes.user.services.UserService;
 import org.slf4j.Logger;
@@ -38,9 +37,8 @@ public class AuthController {
     @Autowired
     public UserService userService;
 
-
     @Autowired
-    JwtUtils jwtUtils;
+    TokenServiceImpl tokenService;
 
 
 
@@ -51,9 +49,9 @@ public class AuthController {
                 new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateJwtToken(authentication);
 
         User user = (User) authentication.getPrincipal();
+        String jwt = tokenService.createToken(user);
 
         List<String> roles = user.getAuthorities().stream()
                 .map(item -> item.getAuthority())
