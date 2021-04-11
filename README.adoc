@@ -14,7 +14,7 @@ To install and run this project follow these steps:
 
 . Install Gradle Dependency
 
-. Go to (src/main/frontend) and  run "npm run build" command to compile the frontend
+. Go to (src/main/frontend) and  run "npm install" to download frontend dependency
 
 . Create a Sql database with the configurations found in application-dev.properties (src/main/resources/application.properties)
 
